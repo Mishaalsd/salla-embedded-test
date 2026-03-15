@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>تجربة Embedded SDK</title>
+<meta charset="UTF-8">
+<title>Salla Embedded Test</title>
 </head>
+
 <body>
-  <h1>تجربة Salla Embedded SDK</h1>
-  <button id="toastBtn">أظهر رسالة</button>
 
-  <!-- استدعاء مكتبة Embedded SDK -->
-  <script src="https://unpkg.com/@salla.sa/embedded-sdk/dist/umd/index.js"></script>
-  <script>
-    // تهيئة SDK
-    const sdk = new SallaSDK({
-      appId: "39856201", // لاحقًا تحط appId الخاص بتطبيقك
-    });
+<h1>تجربة Embedded SDK</h1>
+<button id="toastBtn">أظهر رسالة</button>
 
-    // إظهار رسالة toast عند الضغط على الزر
-    document.getElementById("toastBtn").addEventListener("click", () => {
-      sdk.ui.toast("تم الضغط على الزر! 🎉");
-    });
-  </script>
+<script src="https://unpkg.com/@salla.sa/embedded-sdk/dist/umd/index.js"></script>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+const sdk = new SallaSDK({
+  appId: "39856201",
+  token: token
+});
+
+document.getElementById("toastBtn").addEventListener("click", () => {
+  sdk.ui.toast("تم الضغط على الزر 🎉");
+});
+
+</script>
+
 </body>
 </html>
